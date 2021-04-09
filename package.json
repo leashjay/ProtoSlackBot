@@ -1,0 +1,27 @@
+{
+  "name": "protobot",
+  "version": "0.1.0",
+  "description": "prototype slack bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leashjay/ProtoSlackBot.git"
+  },
+  "keywords": [
+    "slackbot"
+  ],
+  "author": "Alyssa Josephs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leashjay/ProtoSlackBot/issues"
+  },
+  "homepage": "https://github.com/leashjay/ProtoSlackBot#readme",
+  "dependencies": {
+    "@slack/events-api": "^3.0.0",
+    "@slack/web-api": "^6.1.0",
+    "dotenv": "^8.2.0"
+  }
+}
