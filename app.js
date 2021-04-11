@@ -7,10 +7,12 @@ const slackEvents = createEventAdapter(slackSigningSecret);
 const slackClient = new WebClient(slackToken);
 
 slackEvents.on('app_mention', (event) => {
-    console.log('Got message from user ${event.user}: ${event.text}');
+    console.log('Got message from user' + event.user + ': ' + event.text);
+    
     (async () => {
         try {
-            await slackClient.chat.postMessage({ channel: event.channel, text: `Hello <@${event.user}>! :tada:` })
+            await slackClient.chat.postMessage({ channel: event.channel, thread_ts: event.ts, text: `Hello <@${event.user}>! :heavy_check_mark:` })
+
         } catch (error) {
             console.log(error.data)
         }
