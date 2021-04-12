@@ -1,0 +1,25 @@
+# Much Smaller build than the .dev Dockerfile
+# Use node image from DockerHub, define stage by name
+FROM node:14 AS build
+
+# Define working directory inside image
+WORKDIR /app
+
+# Copy pacakge, and package-lock.json to our docker image and specify destination
+COPY package*.json ./ 
+
+# Install dependancies (npm CI uses package-lock.json and provides more predictable builds)
+RUN npm ci --only=production
+
+# Copy source code from this directory to working directory inside docker image
+COPY . .
+
+# Use google's distroless nodejs only has nodejs runtime and is v-small
+FROM gcr.io/distroless/nodejs:14
+
+COPY --from=build /app /app
+
+WORKDIR /app
+
+# Define run command
+CMD ["app.js"]

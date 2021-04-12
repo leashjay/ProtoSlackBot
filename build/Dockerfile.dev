@@ -1,0 +1,17 @@
+# Use node image from DockerHub
+FROM node:14
+
+# Define working directory
+WORKDIR /app
+
+# Copy pacakge, and package-lock.json to our docker image and specify destination
+COPY package*.json ./ 
+
+# Install dependancies
+RUN npm install
+
+# Copy source code from this directory to working directory inside docker image
+COPY . .
+
+# Define run command
+CMD ["node", "app.js"]
